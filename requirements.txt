@@ -4,4 +4,6 @@ wheel
 sphinx
 pytest
 pytest-runner
+six
+appdirs
 packaging
