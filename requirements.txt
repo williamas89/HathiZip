@@ -1,0 +1,4 @@
+mypy
+cx_Freeze
+wheel
+sphinx
