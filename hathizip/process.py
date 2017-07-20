@@ -3,17 +3,41 @@ import tempfile
 import os
 import shutil
 import logging
+import typing
+from collections import namedtuple
 
-def get_files(path):
-    # capture the folder it's in
+PackageFile = namedtuple("PackageFile", ("absolute_path", "archive_path"))
+
+
+# TODO: create get_files test
+def get_files(path)->typing.Iterator[PackageFile]:
+    """Find files relative to a given path
+
+    Args:
+        path: Root to search for files
+
+    Yields: PackageFile containing the absolute path, and the archive path
+
+    """
     starting_point = os.path.sep.join(os.path.normcase(path).split(os.path.sep)[:-1])
     for root, dirs, files in os.walk(path):
         for _file in files:
             relative_root = os.path.relpath(root, starting_point)
-            yield os.path.join(root, _file), os.path.join(relative_root, _file)
+            yield PackageFile(
+                absolute_path=os.path.join(root, _file),
+                archive_path=os.path.join(relative_root, _file)
+            )
 
 
 def compress_folder(path, dst):
+    """Compress the contents of a path
+
+    Args:
+        path: Root of the package
+        dst: Path where the zipped package should be saved
+
+
+    """
     logger = logging.getLogger(__name__)
     logger.debug("Taking care of {}".format(path))
 
