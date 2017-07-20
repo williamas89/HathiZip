@@ -4,3 +4,4 @@ wheel
 sphinx
 pytest
 pytest-runner
+packaging
