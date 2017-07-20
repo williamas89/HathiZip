@@ -27,8 +27,8 @@ def get_tests():
 
 
 INCLUDE_FILES = [
-    # "documentation.url",
-] # + get_tests()
+    "documentation.url",
+] + get_tests()
 
 directory_table = [
     (
@@ -63,7 +63,7 @@ if os.path.exists(MSVC):
     INCLUDE_FILES.append(MSVC)
 
 build_exe_options = {
-    # "includes":        pytest.freeze_includes(),
+    "includes":        pytest.freeze_includes(),
     "include_msvcr": True,
     "packages": [
         "os",
@@ -92,10 +92,10 @@ cx_Freeze.setup(
         "build_exe": build_exe_options,
         "bdist_msi": {
             "upgrade_code": "{D8846842-2CF4-4F9A-8A2A-FFAFD8A5E10B}",
-            # "data": {
-            #     "Shortcut": shortcut_table,
-            #     "Directory": directory_table
-            # },
+            "data": {
+                "Shortcut": shortcut_table,
+                "Directory": directory_table
+            },
 
         }
     },
