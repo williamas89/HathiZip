@@ -67,11 +67,11 @@ build_exe_options = {
     "include_msvcr": True,
     "packages": [
         "os",
-        # 'pytest',
-        # # "lxml",
-        # "packaging",
-        # "six",
-        # "appdirs",
+        'pytest',
+        # "lxml",
+        "packaging",
+        "six",
+        "appdirs",
         # # "tests",
         "hathizip"
     ],
