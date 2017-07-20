@@ -126,7 +126,7 @@ pipeline {
                                        python cx_setup.py bdist_msi --add-to-path=true -k --bdist-dir build/msi
                                        call .env/Scripts/deactivate.bat
                                     """
-                                bat "build\\msi\\udhtchecksum.exe --pytest"
+                                bat "build\\msi\\hathizip.exe --pytest"
                                 dir("dist") {
                                     stash includes: "*.msi", name: "msi"
                                 }
