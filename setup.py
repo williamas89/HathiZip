@@ -10,6 +10,9 @@ setup(
     author=hathizip.__author__,
     author_email=hathizip.__author_email__,
     description=hathizip.__description__,
+    test_suite="tests",
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     entry_points={
         "console_scripts": [
             "hathizip = hathizip.__main__:main"
