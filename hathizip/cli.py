@@ -4,7 +4,7 @@ import shutil
 
 import hathizip
 from hathizip import process, configure_logging
-from .utils import has_subdirs
+from hathizip.utils import has_subdirs
 
 
 def get_parser()->argparse.ArgumentParser:
