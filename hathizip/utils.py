@@ -11,6 +11,6 @@ def has_subdirs(path: str)->bool:
     Returns:
 
     """
-    for _ in filter(os.path.isdir, os.scandir(path)):
+    for _ in filter(lambda x: x.is_dir(), os.scandir(path)):
         return True
     return False
