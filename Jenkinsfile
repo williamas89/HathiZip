@@ -75,7 +75,7 @@ pipeline {
 
                         },
                         "MyPy": {
-                          node(label: "!Windows"){
+                          node(label: "Windows"){
                             deleteDir()
                             unstash "Source"
                             sh "${env.TOX} -e mypy"
