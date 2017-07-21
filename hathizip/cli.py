@@ -1,11 +1,10 @@
 import argparse
 import os
-import logging
+import shutil
 
-from hathizip import process, configure_logging
 import hathizip
-
-GOOD_FOLDER = r"D:\hathigood"
+from hathizip import process, configure_logging
+from .utils import has_subdirs
 
 
 def get_parser()->argparse.ArgumentParser:
@@ -21,11 +20,10 @@ def get_parser()->argparse.ArgumentParser:
         "path",
         help="Path to the HathiTrust folders to be zipped"
     )
-    # TODO: Add argument to delete folder when done
     parser.add_argument(
-        "--save-report",
-        dest="report_name",
-        help="Save report to a file"
+        "--remove",
+        action="store_true",
+        help="Remove original files after successfully zipped"
     )
 
     debug_group = parser.add_argument_group("Debug")
@@ -43,10 +41,13 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
     logger = configure_logging.configure_logger(debug_mode=args.debug, log_file=args.log_debug)
-    logger.info("Starting")
-    for folder in filter(lambda x: x.is_dir(), os.scandir(GOOD_FOLDER)):
-        process.compress_folder(folder.path, dst=GOOD_FOLDER)
-        # TODO: delete file after if requested
+    if not has_subdirs(args.path):
+        logger.error("No directories found at {}".format(args.path))
+    for folder in filter(lambda x: x.is_dir(), os.scandir(args.path)):
+        process.compress_folder(folder.path, dst=args.path)
+        if args.remove:
+            shutil.rmtree(folder.path)
+            logger.info("Removing {}.".format(folder.path))
 
 
 if __name__ == '__main__':
