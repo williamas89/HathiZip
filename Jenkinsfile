@@ -78,7 +78,7 @@ pipeline {
                           node(label: "Windows"){
                             deleteDir()
                             unstash "Source"
-                            sh "${env.TOX} -e mypy"
+                            bat "${env.TOX} -e mypy"
                             junit 'mypy.xml'
                           }
 
