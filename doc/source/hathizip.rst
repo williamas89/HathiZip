@@ -28,6 +28,14 @@ hathizip\.process module
     :undoc-members:
     :show-inheritance:
 
+hathizip\.utils module
+----------------------
+
+.. automodule:: hathizip.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
